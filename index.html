@@ -1,385 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🍔QUADRADO LANCHES</title>
+    <title>QUADRADO LANCHES | Premium Menu</title>
+    
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka+One&amp;family=Nunito:wght@600;700;800&amp;display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    
     <style>
-      * {
-        box-sizing: border-box;
+      * { box-sizing: border-box; }
+      body { 
+        font-family: "Montserrat", sans-serif; 
+        margin: 0; 
+        background-color: #0a0a0a; 
+        color: #fff;
       }
-      body {
-        font-family: "Nunito", sans-serif;
-        margin: 0;
-      }
-      .font-title {
-        font-family: "Fredoka One", cursive
-      }
-      .tab-btn {
-        transition: all 0.3s;
-      }
-      .tab-btn.active {
-        transform: scale(1.05);
-        box-shadow: 0 4px 20px rgba(255, 200, 0, 0.5);
-      }
-      .menu-item {
-        animation: slideUp 0.4s ease forwards;
-        opacity: 0;
-      }
-      @keyframes slideUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-      }
-      .bubble {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.08);
-        animation: float 6s infinite ease-in-out;
-      }
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-20px);
-        }
+      .font-title { font-family: "Cinzel", serif; letter-spacing: 2px; }
+      
+      /* Fundo com degradê radial elegante */
+      .bg-premium {
+        background: radial-gradient(circle at top, #2d0a0a 0%, #0a0a0a 100%);
+        min-height: 100vh;
       }
 
-      .coin-container {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        align-items: flex-end;
+      /* Botões de Categoria Estilizados */
+      .tab-btn { 
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(255, 215, 0, 0.1);
+        backdrop-filter: blur(5px);
       }
-      .coin {
-        background: linear-gradient(700deg, #9b0000, #ffd700);
-        border-radius: 12px;
-        padding: 4px 8px;
-        font-weight: 900;
-        color: #000000;
-        box-shadow: 0 2px 8px rgb(87, 81, 81);
-        font-size: 0.7rem;
-        white-space: nowrap;
-        min-width: 80px;
-        text-align: center;
+      .tab-btn.active { 
+        background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%) !important;
+        color: #000 !important;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(184, 134, 11, 0.3);
       }
-      .coin span {
-        display: block;
-        font-size: 0.55rem;
+
+      /* Card dos Itens */
+      .menu-item { 
+        animation: fadeInBlur 0.6s ease forwards;
+        background: rgba(255, 255, 255, 0.03);
+        border-left: 3px solid #b8860b;
+        backdrop-filter: blur(10px);
+      }
+      
+      @keyframes fadeInBlur {
+        from { opacity: 0; filter: blur(10px); transform: translateY(10px); }
+        to { opacity: 1; filter: blur(0); transform: translateY(0); }
+      }
+
+      /* Preços Estilo "Moeda de Ouro" */
+      .price-tag {
+        background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+        border: 1px solid #b8860b;
+        padding: 4px 12px;
+        border-radius: 4px;
+      }
+      .price-label {
+        font-size: 0.6rem;
+        color: #b8860b;
         text-transform: uppercase;
-        opacity: 0.8;
-        margin-bottom: -2px;
+        font-weight: 800;
+        display: block;
+      }
+      .price-value {
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      /* Divisor elegante */
+      .gold-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #b8860b, transparent);
+        margin: 20px auto;
+        width: 80%;
       }
     </style>
   </head>
   <body class="h-full">
-    <div
-      id="app"
-      class="h-full w-full overflow-auto relative"
-      style="
-        background: linear-gradient(
-          180deg,
-          #000000 0%,
-          #503913 40%,
-          #c35800 100%
-        );
-      "
-    >
-      <header class="text-center pt-6 pb-4 px-4 relative z-10">
-        <h1
-          id="title"
-          class="font-title text-3xl md:text-5xl"
-          style="
-            color: #ffd700;
-            text-shadow:
-              2px 2px 0 #c0392b,
-              0 0 20px rgba(255, 215, 0, 0.3);
-          "
-        >
-          🍔QUADRADO LANCHES
+    <div id="app" class="bg-premium w-full overflow-auto relative pb-10">
+      
+      <header class="text-center pt-10 pb-6 px-4">
+        <div class="mb-2 opacity-80">⎯⎯⎯⎯  EST. 2024  ⎯⎯⎯⎯</div>
+        <h1 id="title" class="font-title text-4xl md:text-6xl text-white">
+          QUADRADO <span style="color: #ffd700;">LANCHES</span>
         </h1>
-        <p id="slogan" class="mt-1 text-sm md:text-base" style="color: #87ceeb">
-          O melhor da regiao de cuiaba!
+        <div class="gold-divider"></div>
+        <p id="slogan" class="mt-2 text-sm tracking-[0.2em] uppercase text-gray-400">
+          Excelência em Sabor em Cuiabá
         </p>
       </header>
 
-      <nav
-        class="flex justify-center gap-2 md:gap-3 px-3 pb-4 flex-wrap relative z-10"
-      >
-        <button
-          onclick="switchTab(0)"
-          id="tab0"
-          class="tab-btn active px-3 py-2 md:px-5 md:py-3 rounded-full font-bold text-xs md:text-sm"
-          style="background: #e74c3c; color: #fff"
-        >
-          🍔 HAMBURGUER
-        </button>
-        <button
-          onclick="switchTab(1)"
-          id="tab1"
-          class="tab-btn px-3 py-2 md:px-5 md:py-3 rounded-full font-bold text-xs md:text-sm"
-          style="background: #4a2c17; color: #ccc"
-        >
-          🍽️ JANTAS
-        </button>
-        <button
-          onclick="switchTab(2)"
-          id="tab2"
-          class="tab-btn px-3 py-2 md:px-5 md:py-3 rounded-full font-bold text-xs md:text-sm"
-          style="background: #4a2c17; color: #ccc"
-        >
-          🍻 BEBIDAS
-        </button>
-        <button
-          onclick="switchTab(3)"
-          id="tab3"
-          class="tab-btn px-3 py-2 md:px-5 md:py-3 rounded-full font-bold text-xs md:text-sm"
-          style="background: #4a2c17; color: #ccc"
-        >
-          ➕ ADICIONAIS
-        </button>
+      <nav class="flex justify-center gap-2 md:gap-4 px-4 pb-10 flex-wrap">
+        <button onclick="switchTab(0)" id="tab0" class="tab-btn active px-4 py-2 rounded-md font-bold text-[10px] md:text-xs bg-white/5">HAMBÚRGUERES</button>
+        <button onclick="switchTab(1)" id="tab1" class="tab-btn px-4 py-2 rounded-md font-bold text-[10px] md:text-xs bg-white/5">JANTINHAS</button>
+        <button onclick="switchTab(2)" id="tab2" class="tab-btn px-4 py-2 rounded-md font-bold text-[10px] md:text-xs bg-white/5">BEBIDAS</button>
+        <button onclick="switchTab(3)" id="tab3" class="tab-btn px-4 py-2 rounded-md font-bold text-[10px] md:text-xs bg-white/5">ADICIONAIS</button>
       </nav>
 
-      <main
-        id="content"
-        class="px-4 pb-8 max-w-3xl mx-auto relative z-10"
-      ></main>
+      <main id="content" class="px-4 max-w-4xl mx-auto"></main>
     </div>
 
     <script>
       const menuData = [
         {
           tab: "Lanches",
-          subtitle: "Opções de hamburguer Normal ou Caseiro",
+          subtitle: "Carnes selecionadas: Opção Normal ou Artesanal Caseira",
           label1: "Normal",
           label2: "Caseiro",
           items: [
-            {
-              name: "Baguncinha",
-              desc: "hambúrguer, bacon, calabresa, salsicha, ovo, presunto, milho, mussarela, alface, tomate",
-              p1: "17,00",
-              p2: "22,00",
-              emoji: "🍔",
-            },
-            {
-              name: "X-salada",
-              desc: "hambúrguer, ovo, presunto, mussarela, milho, alface, tomate",
-              p1: "15,00",
-              p2: "18,00",
-              emoji: "🍔",
-            },
-            {
-              name: "X-calabesa",
-              desc: "hambúrguer, calabresa, salsicha, ovo, presunto, mussarela, milho, alface, tomate",
-              p1: "27,00",
-              p2: "30,00",
-              emoji: "🍔",
-            },
-            {
-              name: "X-bacon",
-              desc: "hambúrguer, bacon, calabresa, salsicha, ovo, presunto, mussarela, milho, alface, tomate",
-              p1: "27,00",
-              p2: "30,00",
-              emoji: "🍔",
-            },
-            {
-              name: "X-bagunça",
-              desc: "hambúrguer, bacon, calabresa, salsicha, ovo, presunto, mussarela, milho, alface, tomate",
-              p1: "29,00",
-              p2: "33,00",
-              emoji: "🍔",
-            },
-            {
-              name: "X-quadradão",
-              desc: "2 hambúrgueres, bacon, calabresa, duas salsichas, dois ovos, presunto, mussarela, milho, alface, tomate",
-              p1: "38,00",
-              p2: "43,00",
-              emoji: " 🍔",
-            },
-            {
-              name: "kids",
-              desc: "hambúrguer, presunto, mussarela",
-              p1: "12,00",
-              p2: "15,00",
-              emoji: "🍔",
-            },
-            {
-              name: "Bauru",
-              desc: "presunto, mussarela, tomate",
-              p1: "11,00",
-              emoji: "🍔",
-            },
-          ],
+            { name: "Baguncinha", desc: "Hambúrguer, bacon, calabresa, salsicha, ovo, presunto, milho, mussarela, alface, tomate", p1: "17,00", p2: "22,00", emoji: "🍔" },
+            { name: "X-salada", desc: "Hambúrguer, ovo, presunto, mussarela, milho, alface, tomate", p1: "15,00", p2: "18,00", emoji: "🍔" },
+            { name: "X-calabresa", desc: "Hambúrguer, calabresa, salsicha, ovo, presunto, mussarela, milho, alface, tomate", p1: "27,00", p2: "30,00", emoji: "🍔" },
+            { name: "X-bacon", desc: "Hambúrguer, bacon, calabresa, salsicha, ovo, presunto, mussarela, milho, alface, tomate", p1: "27,00", p2: "30,00", emoji: "🍔" },
+            { name: "X-bagunça", desc: "Hambúrguer, bacon, calabresa, salsicha, ovo, presunto, mussarela, milho, alface, tomate", p1: "29,00", p2: "33,00", emoji: "🍔" },
+            { name: "X-quadradão", desc: "2 hambúrgueres, bacon, calabresa, duas salsichas, dois ovos, presunto, mussarela, milho, alface, tomate", p1: "38,00", p2: "43,00", emoji: "🍔" },
+            { name: "Kids", desc: "Hambúrguer, presunto, mussarela", p1: "12,00", p2: "15,00", emoji: "🍔" },
+            { name: "Bauru", desc: "Presunto, mussarela, tomate", p1: "11,00", emoji: "🍔" }
+          ]
         },
-
         {
           tab: "Jantinhas",
-          subtitle:
-            "Escolha Simples (somente mandioca)<br> escolha Completa (2 espetos podendo escolher 1 carne apenas)",
+          subtitle: "Acompanhamentos tradicionais e carnes nobres",
           label1: "Simples",
           label2: "Completa",
           items: [
-            { name: "Espeto de Carne", p1: "7,00", p2: "23,00", emoji: "🍖",desc:"." },
-            {
-              name: "Espeto file de Frango",
-              p1: "7,00",
-              p2: "23,00",
-              emoji: "🍗",
-              desc:"."
-            },
-            {
-              name: "Espeto de Linguiça toscana",
-              p1: "7,00",
-              p2: "23,00",
-              emoji: "🍢",
-              desc:"."
-            },
-            {
-              name: "Espeto de linguicinha",
-              p1: "7,00",
-              p2: "23,00",
-              emoji: "🍖",
-              desc:"."
-            },
-            { name: "Espeto de tulipa", p1: "7,00", p2: "23,00", emoji: "🍗" ,desc:"."},
-            {
-              name: "Espeto de calabresa",
-              p1: "7,00",
-              p2: "23,00",
-              emoji: "🍢",
-              desc:"."
-            },
-            { name: "Espeto de coxinha", p1: "7,00", p2: "23,00", emoji: "🍗",desc:"." },
-
-
-            { name: "Jantinha simples", p1: "7,00", emoji: "🍽️" ,desc:"mandioca"},
-            { name: "Jantinha completa", p1: "23,00", emoji: "🍱",desc:"arroz, feijão, farofa, salada e mandioca" },
-
-
-            
-          ],
+            { name: "Espeto de Carne", p1: "7,00", p2: "23,00", emoji: "🍖", desc:"Suculento espeto bovino" },
+            { name: "Espeto Filé de Frango", p1: "7,00", p2: "23,00", emoji: "🍗", desc:"Peito de frango selecionado" },
+            { name: "Espeto de Linguiça Toscana", p1: "7,00", p2: "23,00", emoji: "🍢", desc:"Linguiça de alta qualidade" },
+            { name: "Espeto de Linguicinha", p1: "7,00", p2: "23,00", emoji: "🍖", desc:"Sabor intenso em cada mordida" },
+            { name: "Espeto de Tulipa", p1: "7,00", p2: "23,00", emoji: "🍗", desc:"Meio da asa crocante" },
+            { name: "Espeto de Calabresa", p1: "7,00", p2: "23,00", emoji: "🍢", desc:"Clássica e saborosa" },
+            { name: "Espeto de Coxinha", p1: "7,00", p2: "23,00", emoji: "🍗", desc:"Frango desossado" },
+            { name: "Jantinha Simples", p1: "7,00", emoji: "🍽️", desc:"Acompanha mandioca cozida" },
+            { name: "Jantinha Completa", p1: "23,00", emoji: "🍱", desc:"Arroz, feijão, farofa, salada e mandioca" }
+          ]
         },
-
         {
           tab: "Bebidas",
-          subtitle: "vai uma ai?",
+          subtitle: "Bebidas geladas para acompanhar seu pedido",
           items: [
-            {
-              name: "Refrigerante lata",
-              desc: ".",
-              p1: ".",
-              emoji: "🥫",
-            },
-            {
-              name: "Refrigerante litro",
-              desc: ".",
-              p1: ".",
-              emoji: "🍾",
-            },
-            {
-              name: "Refrigerante 2 litros",
-              desc: ".",
-              p1: ".",
-              emoji: "🍾",
-            },
-            { name: "suco", desc: "Bem geladas", p1: ".", emoji: "🍹" },
-            {
-              name: "Original lata",
-              desc: ".",
-              p1: ".",
-              emoji: "🍻",
-            },
-            {
-              name: "Skol lata",
-              desc: ".",
-              p1: ".",
-              emoji: "🍻",
-            },
-            {
-              name: "Brahma lata",
-              desc: ".",
-              p1: ".",
-              emoji: "🍻",
-            },
-          ],
+            { name: "Refrigerante Lata", desc: "350ml", p1: "6,00", emoji: "🥫" },
+            { name: "Refrigerante Litro", desc: "1000ml", p1: "10,00", emoji: "🍾" },
+            { name: "Refrigerante 2 Litros", desc: "Família", p1: "15,00", emoji: "🍾" },
+            { name: "Suco Natural", desc: "Frutas selecionadas", p1: "7,00", emoji: "🍹" },
+            { name: "Original Lata", desc: "Cerveja de qualidade", p1: "8,00", emoji: "🍻" },
+            { name: "Skol Lata", desc: "Pilsen", p1: "6,00", emoji: "🍻" },
+            { name: "Brahma Lata", desc: "Pilsen", p1: "6,00", emoji: "🍻" }
+          ]
         },
         {
           tab: "Adicionais",
-          subtitle: "A melhor e mais famosa maionese caseira<br/> de cuiaba ",
+          subtitle: "A famosa Maionese Caseira e extras",
           items: [
-            {
-              name: "Maionese caseira",
-              desc: "sache",
-              p1: "3",
-              emoji: "",
-            },
-            {
-              name: "Hamburguer normal",
-              desc: ".",
-              p1: "4",
-              emoji: "🍔",
-            },
-            {
-              name: "Ovo Extra",
-              desc: ".",
-              p1: "4,00",
-              emoji: "🍳",
-            },
-            {
-              name: "Queijo Extra",
-              desc: ".",
-              p1: "5,00",
-              emoji: "🧀",
-            },
-            { name: "Bacon", desc: ".", p1: "5,00", emoji: "🥓" },
-            {
-              name: "Hamburguer caseiro",
-              desc: ".",
-              p1: "7,00",
-              emoji: "🍔",
-            },
-            {
-              name: "feijão",
-              desc: ".",
-              p1: "2,00",
-              emoji: "🫘",
-            },
-            {
-              name: "Mandioca",
-              desc: ".",
-              p1: "3,00",
-              emoji: "🪵",
-            },
-            {
-              name: "arroz",
-              desc: ".",
-              p1: "3.00",
-              emoji: "🍚",
-            },
-          ],
-        },
+            { name: "Maionese Caseira", desc: "A receita secreta da casa", p1: "3,00", emoji: "🧴" },
+            { name: "Hambúrguer Normal", desc: "Disco de carne 90g", p1: "4,00", emoji: "🍔" },
+            { name: "Ovo Extra", desc: "Ovo frito na hora", p1: "4,00", emoji: "🍳" },
+            { name: "Queijo Extra", desc: "Mussarela derretida", p1: "5,00", emoji: "🧀" },
+            { name: "Bacon", desc: "Fatias crocantes", p1: "5,00", emoji: "🥓" },
+            { name: "Hambúrguer Caseiro", desc: "Blend artesanal 150g", p1: "7,00", emoji: "🍔" },
+            { name: "Feijão", desc: "Porção extra", p1: "2,00", emoji: "🫘" },
+            { name: "Mandioca", desc: "Porção extra", p1: "3,00", emoji: "🪵" },
+            { name: "Arroz", desc: "Porção extra", p1: "3,00", emoji: "🍚" }
+          ]
+        }
       ];
 
       let currentTab = 0;
-
       function switchTab(idx) {
         currentTab = idx;
         document.querySelectorAll(".tab-btn").forEach((btn, i) => {
           btn.classList.toggle("active", i === idx);
-          btn.style.background = i === idx ? "#e74c3c" : "#4a2c17";
-          btn.style.color = i === idx ? "#fff" : "#ccc";
         });
         renderMenu();
       }
@@ -387,31 +180,33 @@
       function renderMenu() {
         const data = menuData[currentTab];
         const container = document.getElementById("content");
-
         container.innerHTML = `
-    <p class="text-center mb-4 font-bold" style="color:#87CEEB;font-size:0.9rem;">${data.subtitle}</p>
-    <div class="grid gap-3">
-      ${data.items
-        .map(
-          (item, i) => `
-        <div class="menu-item flex items-center gap-3 p-3 md:p-4 rounded-xl" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,215,0,0.15);animation-delay:${i * 0.08}s;">
-          <div class="text-3xl md:text-4xl flex-shrink-0">${item.emoji}</div>
-          <div class="flex-1 min-w-0">
-            <h3 class="font-bold text-sm md:text-base" style="color:#FFD700;">${item.name}</h3>
-            <p class="text-xs md:text-sm mt-0.5" style="color:#aaa;">${item.desc}</p>
+          <div class="text-center mb-8">
+            <span class="text-[#b8860b] text-xs font-bold tracking-widest uppercase italic">${data.subtitle}</span>
           </div>
-          <div class="coin-container">
-            <div class="coin"><span>${data.label1 || "Preço"}</span>R$ ${item.p1}</div>
-            ${item.p2 ? `<div class="coin"><span>${data.label2}</span>R$ ${item.p2}</div>` : ""}
-          </div>
-        </div>
-      `,
-        )
-        .join("")}
-    </div>
-  `;
+          <div class="grid gap-4">
+            ${data.items.map((item, i) => `
+              <div class="menu-item flex items-center gap-4 p-4 rounded-lg overflow-hidden relative" style="animation-delay:${i * 0.1}s;">
+                <div class="text-3xl md:text-4xl opacity-80 filter grayscale-[0.5] hover:grayscale-0 transition-all">${item.emoji}</div>
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-bold text-sm md:text-lg uppercase tracking-tight" style="color:#eee;">${item.name}</h3>
+                  <p class="text-[11px] md:text-xs mt-1 text-gray-500 leading-relaxed">${item.desc}</p>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <div class="price-tag">
+                    <span class="price-label">${data.label1 || "Valor"}</span>
+                    <span class="price-value">R$ ${item.p1}</span>
+                  </div>
+                  ${item.p2 ? `
+                  <div class="price-tag" style="border-color: #ffd700">
+                    <span class="price-label" style="color: #ffd700">${data.label2}</span>
+                    <span class="price-value">R$ ${item.p2}</span>
+                  </div>` : ""}
+                </div>
+              </div>
+            `).join("")}
+          </div>`;
       }
-
       renderMenu();
     </script>
   </body>

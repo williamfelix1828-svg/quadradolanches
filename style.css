@@ -1,0 +1,19 @@
+/* Isso garante que não haja espaços em branco nas bordas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#app {
+    /* Substitua a URL abaixo pela sua imagem ou use uma cor */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('sua-imagem.jpg');
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Opcional: fixa o fundo ao rolar */
+    
+    min-height: 100vh; /* Ocupa 100% da altura da tela */
+    width: 100%;
+}
